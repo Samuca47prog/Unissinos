@@ -76,4 +76,9 @@ public class Endereco {
     public String getComplemento(){
         return complemento;
     }
+
+    // Outros métodos
+    public String toString(){
+        return "Rua " + nomeDaRua + ", número " + numero + ", " + cidade;
+    }
 }

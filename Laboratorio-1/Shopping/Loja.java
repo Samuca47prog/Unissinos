@@ -67,7 +67,11 @@ public class Loja{
 
     // Outros métodos
     public String toString(){
-        return "Loja " + nome + " contém " + quantidadeFuncionarios + " funcionários com base salarial de " + salarioBaseFuncionario;
+        return  "Loja " + nome + " \n" +
+                "contém " + quantidadeFuncionarios + " \n" + 
+                "funcionários com base salarial de " + salarioBaseFuncionario + ". \n" +
+                "Sediada no Endereço " + endereco.toString() + ". \n" +
+                "Fundada em " + dataFundacao.toString() + " \n";
     }
 
     public Double gastosComSalario(){

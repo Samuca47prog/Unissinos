@@ -118,15 +118,15 @@ public class Data {
         LocalDate dateThis = LocalDate.of(this.ano, this.mes, this.dia);
     
         if (dateRefer.compareTo(dateThis) < 0) {
-            System.out.println("Data de referência é anterior a data testada");
+            //System.out.println("Data de referência é anterior a data testada");
             return 1;
 
         } else if (dateRefer.compareTo(dateThis) > 0) {
-            System.out.println("Data testada é anterior a data de referência");
+            //System.out.println("Data testada é anterior a data de referência");
             return -1;
 
         } else {
-            System.out.println("Datas iguais");
+            //System.out.println("Datas iguais");
             return 0;
             
         }

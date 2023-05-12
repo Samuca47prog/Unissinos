@@ -39,7 +39,9 @@ public class Produto {
 
     // Outros métodos
     public String toString(){
-        return "Produto " + nome + " custa " + preco;
+        return  "Produto " + nome + " \n" + 
+                "Custa " + preco + " \n" + 
+                "Data de validade: " + dataValidade.toString();
     }
 
     // HÁ PROBLEMAS AQUI
