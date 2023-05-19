@@ -5,9 +5,9 @@ public class Principal{
 
         AnaliseArray analise = new AnaliseArray();
 
-        boolean[] resultado = analise.positivosOuNegativos(lista);
+        boolean[] resultado = analise.positivosOuNegativos(listaVazia);
 
-        System.out.println("Positivos true | Negativos false: " + analise.positivosOuNegativos(lista));
+        System.out.println("Positivos true | Negativos false: " + analise.positivosOuNegativos(listaVazia));
 
 
     }
