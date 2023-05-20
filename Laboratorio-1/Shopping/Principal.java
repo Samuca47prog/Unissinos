@@ -35,7 +35,8 @@ public class Principal {
                                             new Data(   Teclado.leInt("Dia de fundação: "),
                                                         Teclado.leInt("Mês de fundação: "),
                                                         Teclado.leInt("Ano de fundação: ")
-                                                    )
+                                                    ),
+                                            Teclado.leInt("Capacidade de estoque: ")
                         );
                     System.out.println(loja.toString());
     

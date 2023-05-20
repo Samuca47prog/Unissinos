@@ -1,3 +1,5 @@
+
+
 public class Produto {
     // Atributos
     private String nome;
@@ -43,7 +45,7 @@ public class Produto {
                 "Custa " + preco + " \n" + 
                 "Data de validade: " + dataValidade.toString();
     }
-    
+
     public boolean estaVencido(Data dataReferencia){
         
         if(dataValidade.comparaData(dataReferencia) == -1){

@@ -1,3 +1,7 @@
+import java.util.Arrays;
+
+import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;  
+
 public class Loja{
     // Atributos
     private String nome;
@@ -5,22 +9,25 @@ public class Loja{
     private Double salarioBaseFuncionario;
     private Endereco endereco;
     private Data dataFundacao;
+    private Produto[] estoqueProdutos;
 
     // Construtores
-    public Loja(String nome, int quantidadeFuncionarios, Double salarioBaseFuncionario, Endereco endereco, Data dataFundacao){
+    public Loja(String nome, int quantidadeFuncionarios, Double salarioBaseFuncionario, Endereco endereco, Data dataFundacao, int capacidadeEstoque){
         this.nome = nome;
         this.quantidadeFuncionarios = quantidadeFuncionarios;
         this.salarioBaseFuncionario = salarioBaseFuncionario;
         this.endereco = endereco;
         this.dataFundacao = dataFundacao;
+        this.estoqueProdutos = new Produto[capacidadeEstoque];
     }
 
-    public Loja(String nome, int quantidadeFuncionarios, Endereco endereco, Data dataFundacao){
+    public Loja(String nome, int quantidadeFuncionarios, Endereco endereco, Data dataFundacao, int capacidadeEstoque){
         this.nome = nome;
         this.quantidadeFuncionarios = quantidadeFuncionarios;
         this.salarioBaseFuncionario = -1.0;
         this.endereco = endereco;
         this.dataFundacao = dataFundacao;
+        this.estoqueProdutos = new Produto[capacidadeEstoque];
     }
 
     // Setters
@@ -44,6 +51,10 @@ public class Loja{
         this.dataFundacao = dataFundacao;
     }
 
+    public void setEstoqueProdutos(Produto[] estoqueProdutos){
+        this.estoqueProdutos = estoqueProdutos;
+    }
+
     // Getters
     public String getNome(){
         return nome;
@@ -65,13 +76,18 @@ public class Loja{
         return dataFundacao;
     }
 
+    public Produto[] getEstoqueProdutos(){
+        return estoqueProdutos;
+    }
+
     // Outros métodos
     public String toString(){
         return  "Loja " + nome + " \n" +
                 "contém " + quantidadeFuncionarios + " \n" + 
                 "funcionários com base salarial de " + salarioBaseFuncionario + ". \n" +
                 "Sediada no Endereço " + endereco.toString() + ". \n" +
-                "Fundada em " + dataFundacao.toString() + " \n";
+                "Fundada em " + dataFundacao.toString() + " \n" + 
+                "Estoque de produtos: " + Arrays.toString(estoqueProdutos);
     }
 
     public Double gastosComSalario(){
@@ -93,5 +109,32 @@ public class Loja{
         else {
             return 'G';
         }
+    }
+
+    // Métodos relacionados a arrays
+    public void imprimeProdutos(){
+        System.out.println(Arrays.toString(estoqueProdutos));
+    }
+
+    public boolean insereProduto(Produto produto){
+
+        for(int i=0; i<estoqueProdutos.length; i++){
+            if(estoqueProdutos[i] == null){
+                estoqueProdutos[i] = produto;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean removeProduto(String nomeProduto){
+        
+        for(int i=0; i<estoqueProdutos.length; i++){
+            if(estoqueProdutos[i].getNome() == nomeProduto){
+                estoqueProdutos[i] = null;
+                return true;
+            }
+        }
+        return false;
     }
 }
