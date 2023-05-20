@@ -1,19 +1,19 @@
 public class Bijuteria extends Loja {
     private double metaVendas;
 
-    public Bijuteria(String nome, int quantidadeFuncionarios, Double salarioBaseFuncionario, Endereco endereco, Data dataFundacao, int capacidadeEstoque, double metaVendas){
+    public Bijuteria(String nome, int quantidadeFuncionarios, Double salarioBaseFuncionario, Endereco endereco, Data dataFundacao, double metaVendas, int capacidadeEstoque){
         super(nome, quantidadeFuncionarios, salarioBaseFuncionario, endereco, dataFundacao, capacidadeEstoque);
 
         this.metaVendas = metaVendas;
     }
 
     // Setters
-    public void setMetaVenda(double metaVendas){
+    public void setMetaVendas(double metaVendas){
         this.metaVendas = metaVendas;
     }
 
     // Getters
-    public double getMetaVenda(){
+    public double getMetaVendas(){
         return metaVendas;
     }
 

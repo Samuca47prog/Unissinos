@@ -1,7 +1,7 @@
 public class Alimentacao extends Loja {
     private Data dataAlvara;
 
-    public Alimentacao(String nome, int quantidadeFuncionarios, Double salarioBaseFuncionario, Endereco endereco, Data dataFundacao, int capacidadeEstoque, Data dataAlvara){
+    public Alimentacao(String nome, int quantidadeFuncionarios, Double salarioBaseFuncionario, Endereco endereco, Data dataFundacao, Data dataAlvara, int capacidadeEstoque){
         super(nome, quantidadeFuncionarios, salarioBaseFuncionario, endereco, dataFundacao, capacidadeEstoque);
 
         this.dataAlvara = dataAlvara;

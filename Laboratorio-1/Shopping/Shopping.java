@@ -60,10 +60,13 @@ public class Shopping {
     public boolean removeLoja(String nomeLoja){
 
         for(int i=0; i<lojas.length; i++){
-            if(lojas[i].getNome() == nomeLoja){
-                lojas[i] = null;
-                return true;
+            if(lojas[i] != null){
+                if(lojas[i].getNome() == nomeLoja){
+                    lojas[i] = null;
+                    return true;
+                }
             }
+
         }
         return false;
     }

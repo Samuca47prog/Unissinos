@@ -130,10 +130,13 @@ public class Loja{
     public boolean removeProduto(String nomeProduto){
         
         for(int i=0; i<estoqueProdutos.length; i++){
-            if(estoqueProdutos[i].getNome() == nomeProduto){
-                estoqueProdutos[i] = null;
-                return true;
+            if(estoqueProdutos[i] != null){
+                if(estoqueProdutos[i].getNome() == nomeProduto){
+                    estoqueProdutos[i] = null;
+                    return true;
+                }
             }
+
         }
         return false;
     }
