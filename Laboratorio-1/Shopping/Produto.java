@@ -43,8 +43,7 @@ public class Produto {
                 "Custa " + preco + " \n" + 
                 "Data de validade: " + dataValidade.toString();
     }
-
-    // HÁ PROBLEMAS AQUI
+    
     public boolean estaVencido(Data dataReferencia){
         
         if(dataValidade.comparaData(dataReferencia) == -1){
