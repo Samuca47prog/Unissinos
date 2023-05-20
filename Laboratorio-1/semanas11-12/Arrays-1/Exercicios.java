@@ -376,4 +376,19 @@ public class Exercicios {
         return string;
     }
 
+
+    public void exercicio21(double[] array){
+        System.out.print("[");
+
+        if(array != null){
+            System.out.print(array[0]);
+
+            for(int i=2; i<array.length; i+=2){
+                System.out.print(", " + array[i]);
+            }
+        }
+
+        System.out.println("]");
+    }
+
 }

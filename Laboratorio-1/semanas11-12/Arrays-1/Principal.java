@@ -113,6 +113,11 @@ public class Principal{
 
 
 
+        System.out.println("\n\n Exercício 21");
+        System.out.print("Imprime posições pares: "); exercicios.exercicio21(arrayDouble);
+
+
+
         System.out.println("\n\nFinal");
     }
 }
