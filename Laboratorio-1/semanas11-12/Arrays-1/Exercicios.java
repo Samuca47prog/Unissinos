@@ -336,4 +336,44 @@ public class Exercicios {
 
     }
 
+
+
+    public String exercicio18(char[] chars){
+        String retorno = "";
+
+        for(char c : chars){
+            retorno += c;
+        }
+
+        return retorno;
+    }
+
+
+
+    public String[] exercicio19(int tamanhoArray){
+        String[] string = new String[tamanhoArray];
+
+        for(int i=0; i<tamanhoArray; i++){
+            string[i] = Teclado.leString("posição " + (i+1) + ": ");
+        }
+
+        return string;
+    }
+
+
+
+    public String[] exercicio20(String[] array, int posicaoExcluir){
+        String[] string = new String[array.length - 1];
+        int index = 0;
+
+        for(int i=0; i<array.length; i++){
+            if(i != posicaoExcluir){
+                string[index] = array[i];
+                index++;
+            }
+        }
+
+        return string;
+    }
+
 }

@@ -98,6 +98,21 @@ public class Principal{
 
 
 
+        System.out.println("\n\n Exercício 18");
+        System.out.println("Junção de char[] em String: " + exercicios.exercicio18(arrayChars));
+
+        
+/*
+        System.out.println("\n\n Exercício 19");
+        System.out.println("Monta String[] pelo teclado: " + Arrays.toString(exercicios.exercicio19(3)));
+*/
+
+
+        System.out.println("\n\n Exercício 20");
+        System.out.println("Exclui a posicao x: " + Arrays.toString(exercicios.exercicio20(arrayString, 1)));
+
+
+
         System.out.println("\n\nFinal");
     }
 }
