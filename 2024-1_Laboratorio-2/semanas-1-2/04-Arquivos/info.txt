@@ -1,0 +1,8 @@
+Alimento mais caro: Produto[nome: Fondue, descricao: Sabor Queijo, preco: 19.9] 
+ --> Alimento[validade: 26/3/2009]
+
+Quantidade vestuário em estoque: 157
+
+Eletrodoméstico mais barato: Produto[nome: Cafeteira, descricao: Nespresso, preco: 399.9] 
+ --> Eletrodomestico[adicional de IPI: 98.65]
+
