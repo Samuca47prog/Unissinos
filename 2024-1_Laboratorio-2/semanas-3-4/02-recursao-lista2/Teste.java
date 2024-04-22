@@ -53,5 +53,6 @@ public class Teste {
         System.out.println("ana:    true  ...  " + ex.exercicio5("ana"));
         // System.out.println("o teu dueto:   true  ...  " + ex.exercicio5("o teu dueto"));
 
+
     }
 }
