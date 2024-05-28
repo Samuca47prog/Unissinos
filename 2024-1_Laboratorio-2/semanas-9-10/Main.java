@@ -38,20 +38,84 @@ public class Main{
 
 
 
-        StaticList<Double> listaDouble1 = new StaticList<Double>(10);
+        StaticList<Double> listaDouble1 = new StaticList<Double>(20);
         listaDouble1.add(1.0);
         listaDouble1.add(1.1);
         listaDouble1.add(1.2);
         listaDouble1.add(1.3);
-        StaticList<Double> listaDouble2 = new StaticList<Double>(10);
+        StaticList<Double> listaDouble2 = new StaticList<Double>(20);
         listaDouble2.add(0.7);
         listaDouble2.add(0.8);
         listaDouble2.add(0.9);
+
 
         imprimeTitulo("Exercício 3");
         preApendList(listaDouble1, listaDouble2);
         for(int i=0; i<listaDouble1.numElements(); i++){
             System.out.print(listaDouble1.get(i) + "  ");
+        }
+
+
+
+
+        imprimeTitulo("Exercício 4");
+        System.out.println("is false: " + listaDouble2.remove(1.0));
+        System.out.println("is true: " + listaDouble2.remove(0.9));
+        listaDouble2.add(0.9);
+
+
+
+        imprimeTitulo("Exercício 5");
+        listaDouble2.insertAfter(0.8, 0.85);
+        for(int i=0; i<listaDouble2.numElements(); i++){
+            System.out.print(listaDouble2.get(i) + "  ");
+        }
+
+
+        imprimeTitulo("Exercício 6");
+        listaDouble2.swap(1, 2);
+        for(int i=0; i<listaDouble2.numElements(); i++){
+            System.out.print(listaDouble2.get(i) + "  ");
+        }
+
+        imprimeTitulo("Exercício 7");
+        listaDouble2.flip();
+        for(int i=0; i<listaDouble2.numElements(); i++){
+            System.out.print(listaDouble2.get(i) + "  ");
+        }
+
+
+        imprimeTitulo("Exercício 8");
+        listaDouble2.insert(listaDouble1, 2);
+        for(int i=0; i<listaDouble2.numElements(); i++){
+            System.out.print(listaDouble2.get(i) + "  ");
+        }
+
+        imprimeTitulo("Exercício 9");
+        listaDouble2.dedup();
+        for(int i=0; i<listaDouble2.numElements(); i++){
+            System.out.print(listaDouble2.get(i) + "  ");
+        }
+
+
+        imprimeTitulo("Exercício 10");
+        StaticList<Integer> listaEquals1 = new StaticList<Integer>(10);
+        StaticList<Integer> listaEquals2 = new StaticList<Integer>(10);
+
+        listaEquals1.add(1);
+        listaEquals1.add(2);
+        listaEquals2.add(1);
+        listaEquals2.add(2);
+
+
+        System.out.println("is true: " + listaEquals1.equals(listaEquals2));
+        System.out.println("is false: " + listaDouble1.equals(listaDouble2));
+
+
+        imprimeTitulo("Exercício 12");
+        listaDouble2.remove(2, 5);
+        for(int i=0; i<listaDouble2.numElements(); i++){
+            System.out.print(listaDouble2.get(i) + "  ");
         }
 
 
