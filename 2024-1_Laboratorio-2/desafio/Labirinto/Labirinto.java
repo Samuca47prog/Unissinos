@@ -76,49 +76,152 @@ public class Labirinto {
         System.out.println();
     }
 
+    public void imprimeLabirinto(int lin, int col, char posicaoAnterior) {
+        int linP=0, colP=0;
+
+        switch (posicaoAnterior) {
+            case 'd':
+                linP=lin; colP=col+1;
+                break;
+            case 'b':
+                linP=lin+1; colP=col;
+            break;
+            case 'c':
+                linP=lin-1; colP=col;
+            break;
+            case 'e':
+                linP=lin; colP=col-1;
+            break;
+        
+            default:
+                break;
+        }
+
+        for (int i = 0; i < labirinto.length; i++) {
+            for (int j = 0; j < labirinto[0].length; j++) {
+                // Posição atual do cursor
+                if(i==lin && j==col){
+                    System.out.print('O');
+                } 
+                // Posição anterior do cursor
+                else if(i==linP && j==colP){
+                    System.out.print('.');
+
+                 } else {
+                    System.out.print(labirinto[i][j]);
+                }
+                    
+            }
+            System.out.println("");
+        }
+    }
+
     public char getPosition(int lin, int col) {
         return labirinto[lin][col];
     }
 
     public boolean percorreLabirinto() {
-        return percorreLabirinto(0, 0, 'e');
+        return percorreLabirinto2(0, 0, 'e');
     }
 
     private boolean percorreLabirinto(int lin, int col, char previous) {
         imprimeLabirinto(lin, col);
 
-        // // ajusta caso esteja fora dos limites
-        
-        // é uma posição proibida?
-        if (getPosition(lin, col) == 'X')
-            return false;
 
         // é o destino?
         if (getPosition(lin, col) == 'D') {
             return true;
         } 
-        
 
-        // baixo
-        if ((lin+1)<=quantLinhas && previous!='b')
-            if(getPosition(lin + 1, col) != 'X')
-                return percorreLabirinto(lin + 1, col, 'c');
+        if(lin+1>=quantLinhas) return percorreLabirinto(lin-1, col, 'b');
+        if(col+1>=quantColunas) return percorreLabirinto(lin, col-1, 'd');
+        if(lin-1<0) return percorreLabirinto(lin+1, col, 'c');
+        if(col-1<0) return percorreLabirinto(lin, col+1, 'e');
 
         // direita
         if ((col+1)<=quantColunas && previous!='d')
             if(getPosition(lin, col + 1) != 'X')
                 return percorreLabirinto(lin, col + 1, 'e');
 
-        // esquerda
-        if ((col-1)>=0 && previous!='e')
-            if(getPosition(lin, col-1) != 'X')
-                return percorreLabirinto(lin, col-1, 'd');
+        // baixo
+        if ((lin+1)<=quantLinhas && previous!='b')
+            if(getPosition(lin + 1, col) != 'X')
+                return percorreLabirinto(lin + 1, col, 'c');
 
         // cima
         if((lin-1)>=0 && previous!='c')
             if(getPosition(lin-1, col) != 'X')
                 return percorreLabirinto(lin-1, col, 'b');
 
+        // esquerda
+        if ((col-1)>=0 && previous!='e')
+        if(getPosition(lin, col-1) != 'X')
+            return percorreLabirinto(lin, col-1, 'd');
+
         return false;
     }
+
+    private boolean percorreLabirinto2(int lin, int col, char posicaoAnterior) {
+
+        // ---------------------------------------
+        // Na posição atual, onde eu estou?
+        imprimeLabirinto(lin, col, posicaoAnterior);
+
+        // -- é o destino?
+        if (getPosition(lin, col) == 'D') {
+            return true;
+        } 
+
+        // ---------------------------------------
+        // Na posição atual, estou nos limites do labirinto?
+
+        String movimentosPermitidos = "";
+
+        // -- se mover na direção dbce, ainda fica dentro do limite do labirinto e não é um X?
+        // direita
+        if(col+1<=quantColunas-1)
+            if(getPosition(lin, col+1) != 'X')
+                movimentosPermitidos += "d";
+        // baixo
+        if(lin+1<=quantLinhas-1) 
+            if(getPosition(lin+1, col) != 'X')
+                movimentosPermitidos += "b";
+        // cima
+        if(lin-1>0) 
+            if(getPosition(lin-1, col) != 'X')
+                movimentosPermitidos += "c";
+        // esquerda
+        if(col-1>0) 
+            if(getPosition(lin, col-1) != 'X') 
+                movimentosPermitidos += "e";
+
+        // -- não vale mover para onde veio
+        String posicaoAnteriorAsStr = "" + posicaoAnterior;
+        movimentosPermitidos = movimentosPermitidos.replace(posicaoAnteriorAsStr, "");
+
+        System.out.println("Movimentos permitidos: " + movimentosPermitidos);
+        System.out.println("\n");
+
+        // ---------------------------------------
+        // Se movendo pelo labirinto
+
+        // direita
+        if (movimentosPermitidos.contains("d"))
+            return percorreLabirinto2(lin, col+1, 'e');
+
+        // cima
+        if(movimentosPermitidos.contains("c"))
+            return percorreLabirinto2(lin-1, col, 'b');
+
+        // baixo
+        if (movimentosPermitidos.contains("b"))
+            return percorreLabirinto2(lin+1, col, 'c');
+
+        // esquerda
+        if (movimentosPermitidos.contains("e"))
+            return percorreLabirinto2(lin, col-1, 'd');
+
+        return false;
+    }
+
 }
