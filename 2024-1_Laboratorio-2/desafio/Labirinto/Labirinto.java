@@ -8,7 +8,7 @@ public class Labirinto {
     private int quantLinhas;
 
     public Labirinto(String filename) {
-        quantColunas = 18;
+        quantColunas = 19;
         criaLabirinto(filename);
     }
 
@@ -117,11 +117,14 @@ public class Labirinto {
     }
 
     public char getPosition(int lin, int col) {
+        if(lin<0 || lin>quantLinhas-1 || col<0 || col>quantColunas-1)
+            return 'X';
+
         return labirinto[lin][col];
     }
 
     public boolean percorreLabirinto() {
-        return percorreLabirinto2(0, 0, 'e');
+        return percorreLabirinto3(0, 0, 'e');
     }
 
     private boolean percorreLabirinto(int lin, int col, char previous) {
@@ -222,6 +225,72 @@ public class Labirinto {
             return percorreLabirinto2(lin, col-1, 'd');
 
         return false;
+    }
+
+
+    private boolean percorreLabirinto3(int lin, int col, char posicaoAnterior) {
+
+        // ---------------------------------------
+        // Na posição atual, onde eu estou?
+        imprimeLabirinto(lin, col, posicaoAnterior);
+
+        // -- é o destino?
+        if (getPosition(lin, col) == 'D') {
+            return true;
+        } 
+
+        // ---------------------------------------
+        // Na posição atual, estou nos limites do labirinto?
+
+        String movimentosPermitidos = "";
+
+        // -- se mover na direção dbce, ainda fica dentro do limite do labirinto e não é um X?
+        // direita
+        if(col+1<=quantColunas)
+            if(getPosition(lin, col+1) != 'X')
+                movimentosPermitidos += "d";
+        // baixo
+        if(lin+1<=quantLinhas) 
+            if(getPosition(lin+1, col) != 'X')
+                movimentosPermitidos += "b";
+        // cima
+        if(lin>0) 
+            if(getPosition(lin-1, col) != 'X')
+                movimentosPermitidos += "c";
+        // esquerda
+        if(col-1>0) 
+            if(getPosition(lin, col-1) != 'X') 
+                movimentosPermitidos += "e";
+
+        // -- não vale mover para onde veio
+        String posicaoAnteriorAsStr = "" + posicaoAnterior;
+        movimentosPermitidos = movimentosPermitidos.replace(posicaoAnteriorAsStr, "");
+
+        System.out.println("Movimentos permitidos: " + movimentosPermitidos);
+        System.out.println("\n");
+
+        // ---------------------------------------
+        // Se movendo pelo labirinto
+        boolean chegouNoDestino=false;
+
+        // direita
+        if (movimentosPermitidos.contains("d") && !chegouNoDestino)
+            chegouNoDestino = percorreLabirinto3(lin, col+1, 'e');
+
+        // cima
+        if(movimentosPermitidos.contains("c") && !chegouNoDestino)
+            chegouNoDestino = percorreLabirinto3(lin-1, col, 'b');
+
+        // baixo
+        if (movimentosPermitidos.contains("b") && !chegouNoDestino)
+            chegouNoDestino = percorreLabirinto3(lin+1, col, 'c');
+
+        // esquerda
+        if (movimentosPermitidos.contains("e") && !chegouNoDestino)
+            chegouNoDestino = percorreLabirinto3(lin, col-1, 'd');        
+        
+
+        return chegouNoDestino;
     }
 
 }
