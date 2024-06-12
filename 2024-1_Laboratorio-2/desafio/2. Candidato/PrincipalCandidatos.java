@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class PrincipalCandidatos {
     public static void main(String[] args) {
@@ -28,6 +29,20 @@ public class PrincipalCandidatos {
         System.out.println("\n\n\tOrdem ordenada:");
         for (Candidato candidato : candidatos) {
             System.out.println(candidato.toString());
+        }
+
+        // Pesquisa o candidato
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Candidato procurado: ");
+        String alvo = scanner.nextLine();
+
+        int index = pesquisaBinariaCandidatos(candidatos, alvo);
+        if(index > -1){
+            System.out.println("\n\nCandidato achado!");
+            System.out.println(candidatos[index].toString());
+        }
+        else {
+            System.out.println("\n\nCandidato não achado!");
         }
     }
 
@@ -73,10 +88,32 @@ public class PrincipalCandidatos {
         }
     }
 
-    private static void troca(Candidato[] candidatos, int firstIndex, int secondIndex) {
+    public static void troca(Candidato[] candidatos, int firstIndex, int secondIndex) {
         Candidato temp = candidatos[firstIndex];
         candidatos[firstIndex] = candidatos[secondIndex];
         candidatos[secondIndex] = temp;
     }
+
+
+    public static int pesquisaBinariaCandidatos(Candidato[] candidatos, String alvo){
+        return pesquisaBinariaCandidatos(candidatos, alvo, 0, candidatos.length - 1);
+    }
+
+    // Recursive binarySearch method
+    private static int pesquisaBinariaCandidatos(Candidato[] candidatos, String alvo, int inicio, int fim) {
+        if (inicio > fim) 
+            return -1;
+
+        int meio = (inicio + fim) / 2;
+
+        if (candidatos[meio].getNome().equals(alvo)) {
+            return meio;
+        } else if (candidatos[meio].getNome().compareTo(alvo) > 0) {
+            return pesquisaBinariaCandidatos(candidatos, alvo, inicio, meio - 1);
+        } else {
+            return pesquisaBinariaCandidatos(candidatos, alvo, meio + 1, fim);
+        }
+    }
+
 
 }
